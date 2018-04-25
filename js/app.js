@@ -1,7 +1,9 @@
 /*
  * Create a list that holds all of your cards
  */
-
+const deck = document.querySelector('.deck');
+let card = document.getElementsByClassName('card');
+let cardsArray = [...card];
 
 /*
  * Display the cards on the page
@@ -23,6 +25,17 @@ function shuffle(array) {
     }
 
     return array;
+}
+function start() {
+
+    cardsArray = shuffle(cardsArray);
+    deck.innerHTML = "";
+    for(let i = 0; i <= cardsArray.length; i++) {
+       
+
+
+    }
+
 }
 
 
