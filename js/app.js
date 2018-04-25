@@ -3,7 +3,9 @@
  */
 const deck = document.querySelector('.deck');
 let card = document.getElementsByClassName('card');
+let cardElements = document.getElementsByClassName('fa');
 let cardsArray = [...card];
+let itemList = ["fa-diamond","fa-paper-plane-o","fa-anchor","fa-bolt","fa-cube","fa-leaf","fa-bicycle","fa-bomb"];
 
 /*
  * Display the cards on the page
@@ -29,11 +31,11 @@ function shuffle(array) {
 function start() {
 
     cardsArray = shuffle(cardsArray);
-    deck.innerHTML = "";
+    itemList = shuffle(itemList);
+
     for(let i = 0; i <= cardsArray.length; i++) {
-       
-
-
+    let random = itemList[Math.floor(Math.random()*itemList.length)].split("").join("");
+    //add a random icon to the each card
     }
 
 }
