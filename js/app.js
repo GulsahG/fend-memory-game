@@ -2,7 +2,7 @@
  * Create a list that holds all of your cards
  */
 const deck = document.querySelector('.deck');
-let card = document.getElementsByClassName('card');
+const card = document.getElementsByClassName('card');
 let cardElements = document.getElementsByClassName('fa');
 let cardsArray = [...card];
 let itemList = ["fa-diamond","fa-paper-plane-o","fa-anchor","fa-bolt","fa-cube","fa-leaf","fa-bicycle","fa-bomb"];
@@ -33,9 +33,16 @@ function start() {
     cardsArray = shuffle(cardsArray);
     itemList = shuffle(itemList);
 
-    for(let i = 0; i <= cardsArray.length; i++) {
+    for(let i = 0; i < cardsArray.length; i++) {
     let random = itemList[Math.floor(Math.random()*itemList.length)].split("").join("");
-    //add a random icon to the each card
+    cardsArray[i].firstElementChild.className = "";
+    cardsArray[i].firstElementChild.classList.add("fa",random);
+    if(itemList.length > 1) {
+        itemList = itemList.reduce((p,c) => (c !== random && p.push(c),p),[]);
+    }
+    else  {
+        itemList.splice(0,1,"fa-diamond","fa-paper-plane-o","fa-anchor","fa-bolt","fa-cube","fa-leaf","fa-bicycle","fa-bomb");
+    }
     }
 
 }
@@ -51,3 +58,12 @@ function start() {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
+function openCard(e) {
+    e.target.classList.toggle('open');
+    e.target.classList.toggle('show');
+}
+for (const y of cardsArray) {
+    y.addEventListener("click", openCard);
+  }
+
