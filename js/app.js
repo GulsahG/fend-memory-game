@@ -28,7 +28,7 @@ function shuffle(array) {
 
     return array;
 }
-function start() {
+function setup() {
 
     cardsArray = shuffle(cardsArray);
     itemList = shuffle(itemList);
@@ -58,12 +58,55 @@ function start() {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
-
-function openCard(e) {
+var cardsList = [];
+var moveCounter = 0;
+var moves = document.querySelector('.moves');
+function start(e) {
+    openCards(e);
+    storeCards(e);
+}
+function openCards(e) {
     e.target.classList.toggle('open');
     e.target.classList.toggle('show');
 }
-for (const y of cardsArray) {
-    y.addEventListener("click", openCard);
+
+function storeCards (e) {
+  cardsList.push(e.target);
+  if(cardsList.length > 1) {
+      if (cardsList[0].firstElementChild.className == cardsList[1].firstElementChild.className ) {
+        lockCards(e);
+      }
+      else {
+        hideCards(e);
+      }
+      countMoves();
+      cardsList.splice(0,cardsList.length);
+  }
+  else {
+      return;
   }
 
+}
+function lockCards (e) {
+    e.target.classList.add('open');
+    e.target.classList.add('show');
+    cardsList[0].classList.add('match');
+    cardsList[1].classList.add('match');
+}
+
+function hideCards (e) {
+    openCards(e);
+    cardsList[0].classList.remove("open","show");
+    cardsList[1].classList.remove("open","show");
+}
+
+function countMoves () {
+    moveCounter ++;
+    moves.innerHTML = moveCounter;
+}
+
+for (const y of cardsArray) {
+    y.addEventListener("click", start);
+  }
+
+setup();
