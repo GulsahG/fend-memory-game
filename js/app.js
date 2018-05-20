@@ -78,16 +78,17 @@ function storeCards (e) {
   if(cardsList.length > 1) {
       if (cardsList[0].firstElementChild.className == cardsList[1].firstElementChild.className ) {
         lockCards(e);
-        e.removeEventListener("click", start);
         matched ++;
       }
       else {
-        hideCards(e);
+        t = setTimeout(hideCards, 1000, e);
       }
       countMoves();
       cardsList.splice(0,cardsList.length);
   }
+  
   else {
+    t = setTimeout(hideCards, 2000, e);
       return;
   }
 
