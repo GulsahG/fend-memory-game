@@ -78,7 +78,6 @@ function storeCards (e) {
   if(cardsList.length > 1) {
       if (cardsList[0].firstElementChild.className == cardsList[1].firstElementChild.className ) {
         lockCards(e);
-        e.removeEventListener("click", start);
         matched ++;
       }
       else {
