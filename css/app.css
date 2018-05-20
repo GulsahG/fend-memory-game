@@ -107,3 +107,39 @@ h1 {
     float: right;
     cursor: pointer;
 }
+.final {
+    display: none;
+}
+.rainbow {
+    font-family: cursive;
+    animation: rainbow 1s infinite;
+}
+
+@keyframes rainbow {
+    20% {
+      color: red;
+    }
+    40% {
+      color: yellow;
+    }
+    60% {
+      color: green;
+    }
+    80% {
+      color: blue;
+    }
+    100% {
+      color: orange;
+    }
+  }
+  @keyframes onAndOff {
+    to {
+      opacity: 0;
+    }
+  }
+  @keyframes ghost {
+    to {
+      opacity: 100;
+    }
+  }
+  

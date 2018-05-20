@@ -2,6 +2,7 @@
  * Create a list that holds all of your cards
  */
 const deck = document.querySelector('.deck');
+const final = document.querySelector('.final');
 const card = document.getElementsByClassName('card');
 let cardElements = document.getElementsByClassName('fa');
 let cardsArray = [...card];
@@ -60,7 +61,9 @@ function setup() {
  */
 var cardsList = [];
 var moveCounter = 0;
+var matched = 0;
 var moves = document.querySelector('.moves');
+var score = document.querySelector('.score');
 function start(e) {
     openCards(e);
     storeCards(e);
@@ -75,6 +78,8 @@ function storeCards (e) {
   if(cardsList.length > 1) {
       if (cardsList[0].firstElementChild.className == cardsList[1].firstElementChild.className ) {
         lockCards(e);
+        e.removeEventListener("click", start);
+        matched ++;
       }
       else {
         hideCards(e);
@@ -107,6 +112,16 @@ function countMoves () {
 
 for (const y of cardsArray) {
     y.addEventListener("click", start);
+    y.addEventListener("click", finalScore);
   }
+
+function finalScore() {
+    if(matched === 8) {
+        final.style.display = "block";
+        deck.style.display = "none";
+        score.innerHTML = moveCounter;
+    }
+}
+
 
 setup();
