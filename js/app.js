@@ -1,12 +1,16 @@
 /*
  * Create a list that holds all of your cards
  */
+const repeat = document.querySelector('.fa-repeat');
+const star1 = document.querySelector('.star1');
+const star2 = document.querySelector('.star2');
+const star3 = document.querySelector('.star3');
 const deck = document.querySelector('.deck');
 const final = document.querySelector('.final');
 const card = document.getElementsByClassName('card');
 let cardElements = document.getElementsByClassName('fa');
 let cardsArray = [...card];
-let itemList = ["fa-diamond","fa-paper-plane-o","fa-anchor","fa-bolt","fa-cube","fa-leaf","fa-bicycle","fa-bomb"];
+let itemList = ["fa-github","fa-firefox","fa-android","fa-code","fa-bug","fa-headphones","fa-codepen","fa-slack"];
 
 /*
  * Display the cards on the page
@@ -42,7 +46,7 @@ function setup() {
         itemList = itemList.reduce((p,c) => (c !== random && p.push(c),p),[]);
     }
     else  {
-        itemList.splice(0,1,"fa-diamond","fa-paper-plane-o","fa-anchor","fa-bolt","fa-cube","fa-leaf","fa-bicycle","fa-bomb");
+        itemList.splice(0,1,"fa-github","fa-firefox","fa-android","fa-code","fa-bug","fa-headphones","fa-codepen","fa-slack");
     }
     }
 
@@ -124,5 +128,10 @@ function finalScore() {
     }
 }
 
+function reloadPage(){
+    window.location.reload();
+ }
+
+repeat.addEventListener('click', reloadPage);
 
 setup();

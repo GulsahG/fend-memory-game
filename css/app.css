@@ -17,8 +17,10 @@ body {
 }
 
 body {
-    background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
+    background: #ffffff url('../img/geometry5.jpg') ; /* Background pattern from Subtle Patterns */
     font-family: 'Coda', cursive;
+    font-size: 20px;
+    opacity:0.9;
 }
 
 .container {
@@ -29,8 +31,10 @@ body {
 }
 
 h1 {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Plaster' , cursive;
     font-weight: 300;
+    color:#181f25;
+    font-size:55px;
 }
 
 /*
@@ -40,7 +44,7 @@ h1 {
 .deck {
     width: 660px;
     min-height: 680px;
-    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+    background: linear-gradient(160deg, #eb8c00 0%, #a32020 100%);
     padding: 32px;
     border-radius: 10px;
     box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
@@ -67,7 +71,7 @@ h1 {
 
 .deck .card.open {
     transform: rotateY(0);
-    background: #02b3e4;
+    background: #878bb3;
     cursor: default;
 }
 
@@ -77,7 +81,7 @@ h1 {
 
 .deck .card.match {
     cursor: default;
-    background: #02ccba;
+    background: #4a5091;
     font-size: 33px;
 }
 
@@ -87,7 +91,7 @@ h1 {
 
 .score-panel {
     text-align: left;
-    width: 345px;
+    width: 550px;
     margin-bottom: 10px;
 }
 
@@ -108,10 +112,16 @@ h1 {
     cursor: pointer;
 }
 .final {
+    margin-top: 180px;
     display: none;
+    border-radius: 75%;
+    background:black;
+    opacity:0.8;
 }
 .rainbow {
     font-family: cursive;
+    font-size: 60px;
+    padding: 15px;
     animation: rainbow 1s infinite;
 }
 
