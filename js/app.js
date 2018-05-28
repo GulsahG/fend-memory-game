@@ -3,6 +3,7 @@
  */
 const repeat = document.querySelector('.fa-repeat');
 const stars = document.querySelector('.star');
+const star = document.querySelector('#stars');
 const deck = document.querySelector('.deck');
 const final = document.querySelector('.final');
 const card = document.getElementsByClassName('card');
@@ -122,16 +123,16 @@ function countMoves() {
     moves.innerHTML = moveCounter;
 }
 
-function countStars() { 
-    if (moveCounter >= 10){
-     stars.innerHTML = 2;   
-}
-    else if(moveCounter >= 15) {
-    stars.innerHTML = 1;
-}
-    else {
-    stars.innerHTML = 3;
-}
+function countStars() {
+    if (moveCounter >= 15) {
+        stars.innerHTML = 1;
+        star.innerHTML = "Star!";
+    } else if (moveCounter >= 10) {
+        stars.innerHTML = 2;
+    } else {
+        stars.innerHTML = 3;
+    }
+
 }
 
 for (const y of cardsArray) {

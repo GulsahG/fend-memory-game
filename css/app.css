@@ -17,10 +17,11 @@ body {
 }
 
 body {
-    background: #ffffff url('../img/geometry5.jpg') ; /* Background pattern from Subtle Patterns */
+    background: #ffffff url('../img/geometry5.jpg');
+    /* Background pattern from Subtle Patterns */
     font-family: 'Coda', cursive;
     font-size: 20px;
-    opacity:0.9;
+    opacity: 0.9;
 }
 
 .container {
@@ -31,10 +32,10 @@ body {
 }
 
 h1 {
-    font-family: 'Plaster' , cursive;
+    font-family: 'Plaster', cursive;
     font-weight: 300;
-    color:#181f25;
-    font-size:55px;
+    color: #181f25;
+    font-size: 55px;
 }
 
 /*
@@ -111,13 +112,15 @@ h1 {
     float: right;
     cursor: pointer;
 }
+
 .final {
     margin-top: 180px;
     display: none;
     border-radius: 75%;
-    background:black;
-    opacity:0.8;
+    background: black;
+    opacity: 0.8;
 }
+
 .rainbow {
     font-family: cursive;
     font-size: 60px;
@@ -127,29 +130,30 @@ h1 {
 
 @keyframes rainbow {
     20% {
-      color: red;
+        color: red;
     }
     40% {
-      color: yellow;
+        color: yellow;
     }
     60% {
-      color: green;
+        color: green;
     }
     80% {
-      color: blue;
+        color: blue;
     }
     100% {
-      color: orange;
+        color: orange;
     }
-  }
-  @keyframes onAndOff {
+}
+
+@keyframes onAndOff {
     to {
-      opacity: 0;
+        opacity: 0;
     }
-  }
-  @keyframes ghost {
+}
+
+@keyframes ghost {
     to {
-      opacity: 100;
+        opacity: 100;
     }
-  }
-  
+}
