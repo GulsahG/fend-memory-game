@@ -93,7 +93,6 @@ function storeCards(e) {
             cardsList.splice(0, cardsList.length);
         } else {
             t = setTimeout(hideCards, 2000, e);
-
         }
         countMoves();
     } else {
@@ -118,7 +117,10 @@ function hideCards(e) {
         cardsList[1].classList.remove("open", "show");
         cardsList.splice(0, cardsList.length);
     } else {
-        return;
+        for (const y of cardsList) {
+            y.classList.remove("open", "show");
+        }
+        cardsList.splice(0, cardsList.length);
     }
 }
 
