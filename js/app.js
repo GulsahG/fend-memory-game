@@ -1,6 +1,12 @@
+//Timer function: https://codepad.co/snippet/YMYUDYgr
+
 /*
  * Create a list that holds all of your cards
  */
+const timer = document.querySelector('.timer');
+const totalTime = document.querySelector('.total');
+const moves = document.querySelector('.moves');
+const score = document.querySelector('.score');
 const repeat = document.querySelector('.fa-repeat');
 const stars = document.querySelector('.star');
 const star = document.querySelector('#stars');
@@ -63,11 +69,13 @@ function setup() {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
-var cardsList = [];
-var moveCounter = 0;
-var matched = 0;
-var moves = document.querySelector('.moves');
-var score = document.querySelector('.score');
+let seconds = 0;
+let minutes = 0;
+let hours = 0;
+let g;
+const cardsList = [];
+let moveCounter = 0;
+let matched = 0;
 
 function start(e) {
     if (cardsList.length >= 2) return;
@@ -118,16 +126,38 @@ function hideCards(e) {
     }
 }
 
+function add() {
+    seconds++;
+    if (seconds >= 60) {
+        seconds = 0;
+        minutes++;
+        if (minutes >= 60) {
+            minutes = 0;
+            hours++;
+        }
+    }
+
+    timer.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+
+    startTimer();
+}
+
+function startTimer() {
+    g = setTimeout(add, 1000);
+}
+startTimer();
+
 function countMoves() {
     moveCounter++;
     moves.innerHTML = moveCounter;
 }
 
 function countStars() {
-    if (moveCounter >= 15) {
+    totalTime.innerHTML = timer.textContent;
+    if (moveCounter >= 25) {
         stars.innerHTML = 1;
         star.innerHTML = "Star!";
-    } else if (moveCounter >= 10) {
+    } else if (moveCounter >= 20) {
         stars.innerHTML = 2;
     } else {
         stars.innerHTML = 3;
@@ -145,6 +175,7 @@ function finalScore() {
         final.style.display = "block";
         deck.style.display = "none";
         score.innerHTML = moveCounter;
+        clearTimeout(g);
     }
     countStars();
 }
