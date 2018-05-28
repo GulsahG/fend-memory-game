@@ -121,7 +121,7 @@ h1 {
 .rainbow {
     font-family: cursive;
     font-size: 60px;
-    padding: 15px;
+    padding: 30px;
     animation: rainbow 1s infinite;
 }
 

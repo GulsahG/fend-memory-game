@@ -2,9 +2,7 @@
  * Create a list that holds all of your cards
  */
 const repeat = document.querySelector('.fa-repeat');
-const star1 = document.querySelector('.star1');
-const star2 = document.querySelector('.star2');
-const star3 = document.querySelector('.star3');
+const stars = document.querySelector('.star');
 const deck = document.querySelector('.deck');
 const final = document.querySelector('.final');
 const card = document.getElementsByClassName('card');
@@ -124,6 +122,18 @@ function countMoves() {
     moves.innerHTML = moveCounter;
 }
 
+function countStars() { 
+    if (moveCounter >= 10){
+     stars.innerHTML = 2;   
+}
+    else if(moveCounter >= 15) {
+    stars.innerHTML = 1;
+}
+    else {
+    stars.innerHTML = 3;
+}
+}
+
 for (const y of cardsArray) {
     y.addEventListener("click", start);
     y.addEventListener("click", finalScore);
@@ -135,6 +145,7 @@ function finalScore() {
         deck.style.display = "none";
         score.innerHTML = moveCounter;
     }
+    countStars();
 }
 
 function reloadPage() {
