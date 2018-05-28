@@ -10,7 +10,7 @@ const final = document.querySelector('.final');
 const card = document.getElementsByClassName('card');
 let cardElements = document.getElementsByClassName('fa');
 let cardsArray = [...card];
-let itemList = ["fa-github","fa-firefox","fa-android","fa-code","fa-bug","fa-headphones","fa-codepen","fa-slack"];
+let itemList = ["fa-github", "fa-firefox", "fa-android", "fa-code", "fa-bug", "fa-headphones", "fa-codepen", "fa-slack"];
 
 /*
  * Display the cards on the page
@@ -21,7 +21,8 @@ let itemList = ["fa-github","fa-firefox","fa-android","fa-code","fa-bug","fa-hea
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+    var currentIndex = array.length,
+        temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
@@ -33,21 +34,21 @@ function shuffle(array) {
 
     return array;
 }
+
 function setup() {
 
     cardsArray = shuffle(cardsArray);
     itemList = shuffle(itemList);
 
-    for(let i = 0; i < cardsArray.length; i++) {
-    let random = itemList[Math.floor(Math.random()*itemList.length)].split("").join("");
-    cardsArray[i].firstElementChild.className = "";
-    cardsArray[i].firstElementChild.classList.add("fa",random);
-    if(itemList.length > 1) {
-        itemList = itemList.reduce((p,c) => (c !== random && p.push(c),p),[]);
-    }
-    else  {
-        itemList.splice(0,1,"fa-github","fa-firefox","fa-android","fa-code","fa-bug","fa-headphones","fa-codepen","fa-slack");
-    }
+    for (let i = 0; i < cardsArray.length; i++) {
+        let random = itemList[Math.floor(Math.random() * itemList.length)].split("").join("");
+        cardsArray[i].firstElementChild.className = "";
+        cardsArray[i].firstElementChild.classList.add("fa", random);
+        if (itemList.length > 1) {
+            itemList = itemList.reduce((p, c) => (c !== random && p.push(c), p), []);
+        } else {
+            itemList.splice(0, 1, "fa-github", "fa-firefox", "fa-android", "fa-code", "fa-bug", "fa-headphones", "fa-codepen", "fa-slack");
+        }
     }
 
 }
@@ -68,69 +69,80 @@ var moveCounter = 0;
 var matched = 0;
 var moves = document.querySelector('.moves');
 var score = document.querySelector('.score');
+
 function start(e) {
     openCards(e);
     storeCards(e);
 }
+
 function openCards(e) {
-    e.target.classList.toggle('open');
-    e.target.classList.toggle('show');
+    if (e.target.classList.contains(open)) {
+        return;
+    } else {
+        e.target.classList.toggle('open');
+        e.target.classList.toggle('show');
+    }
 }
 
-function storeCards (e) {
-  cardsList.push(e.target);
-  if(cardsList.length > 1) {
-      if (cardsList[0].firstElementChild.className == cardsList[1].firstElementChild.className ) {
-        lockCards(e);
-        matched ++;
-      }
-      else {
-        t = setTimeout(hideCards, 1000, e);
-      }
-      countMoves();
-      cardsList.splice(0,cardsList.length);
-  }
-  
-  else {
-    t = setTimeout(hideCards, 2000, e);
-      return;
-  }
+function storeCards(e) {
+    cardsList.push(e.target);
+    if (cardsList.length > 1) {
+        if (cardsList[0].firstElementChild.className == cardsList[1].firstElementChild.className) {
+            lockCards(e);
+            matched++;
+            cardsList.splice(0, cardsList.length);
+        } else {
+            t = setTimeout(hideCards, 2000, e);
+
+        }
+        countMoves();
+    } else {
+        t = setTimeout(hideCards, 2000, e);
+        return;
+    }
 
 }
-function lockCards (e) {
+
+function lockCards(e) {
     e.target.classList.add('open');
     e.target.classList.add('show');
     cardsList[0].classList.add('match');
     cardsList[1].classList.add('match');
 }
 
-function hideCards (e) {
-    openCards(e);
-    cardsList[0].classList.remove("open","show");
-    cardsList[1].classList.remove("open","show");
+function hideCards(e) {
+    if (cardsList.length === 1) {
+        cardsList[0].classList.add("open", "show");
+    } else if (cardsList.length === 2) {
+        cardsList[0].classList.remove("open", "show");
+        cardsList[1].classList.remove("open", "show");
+        cardsList.splice(0, cardsList.length);
+    } else {
+        return;
+    }
 }
 
-function countMoves () {
-    moveCounter ++;
+function countMoves() {
+    moveCounter++;
     moves.innerHTML = moveCounter;
 }
 
 for (const y of cardsArray) {
     y.addEventListener("click", start);
     y.addEventListener("click", finalScore);
-  }
+}
 
 function finalScore() {
-    if(matched === 8) {
+    if (matched === 8) {
         final.style.display = "block";
         deck.style.display = "none";
         score.innerHTML = moveCounter;
     }
 }
 
-function reloadPage(){
+function reloadPage() {
     window.location.reload();
- }
+}
 
 repeat.addEventListener('click', reloadPage);
 
