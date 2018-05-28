@@ -71,17 +71,15 @@ var moves = document.querySelector('.moves');
 var score = document.querySelector('.score');
 
 function start(e) {
+    if (cardsList.length >= 2) return;
     openCards(e);
     storeCards(e);
 }
 
 function openCards(e) {
-    if (e.target.classList.contains(open)) {
-        return;
-    } else {
-        e.target.classList.toggle('open');
-        e.target.classList.toggle('show');
-    }
+    if (e.target.classList.contains(open)) return;
+    e.target.classList.toggle('open');
+    e.target.classList.toggle('show');
 }
 
 function storeCards(e) {
@@ -117,10 +115,7 @@ function hideCards(e) {
         cardsList[1].classList.remove("open", "show");
         cardsList.splice(0, cardsList.length);
     } else {
-        for (const y of cardsList) {
-            y.classList.remove("open", "show");
-        }
-        cardsList.splice(0, cardsList.length);
+        return;
     }
 }
 
