@@ -3,6 +3,11 @@
 /*
  * Create a list that holds all of your cards
  */
+
+//Setting up the all variables
+const star1 = document.querySelector('.star1');
+const star2 = document.querySelector('.star2');
+const again = document.querySelector('.again');
 const timer = document.querySelector('.timer');
 const totalTime = document.querySelector('.total');
 const moves = document.querySelector('.moves');
@@ -39,7 +44,7 @@ function shuffle(array) {
 
     return array;
 }
-
+//Setting up the whole items in the game and shuffling them 
 function setup() {
 
     cardsArray = shuffle(cardsArray);
@@ -77,18 +82,20 @@ const cardsList = [];
 let moveCounter = 0;
 let matched = 0;
 
+//Stops the function if the user clicks more than 2 cards at a time 
 function start(e) {
     if (cardsList.length >= 2) return;
     openCards(e);
     storeCards(e);
 }
-
+//opens the cards at the first click
 function openCards(e) {
     if (e.target.classList.contains(open)) return;
     e.target.classList.toggle('open');
     e.target.classList.toggle('show');
 }
 
+//storing the cards to see if they are matched 
 function storeCards(e) {
     cardsList.push(e.target);
     if (cardsList.length > 1) {
@@ -96,7 +103,9 @@ function storeCards(e) {
             lockCards(e);
             matched++;
             cardsList.splice(0, cardsList.length);
-        } else {
+        }
+        // hiding the cards if they are not matched
+        else {
             t = setTimeout(hideCards, 2000, e);
         }
         countMoves();
@@ -107,17 +116,21 @@ function storeCards(e) {
 
 }
 
+//locking the cards if they are matched and changing their colour
 function lockCards(e) {
     e.target.classList.add('open');
     e.target.classList.add('show');
     cardsList[0].classList.add('match');
     cardsList[1].classList.add('match');
 }
-
+//hiding the cards depending on the number of cards opened
 function hideCards(e) {
+    //not hiding the card if the user clicked only one card
     if (cardsList.length === 1) {
         cardsList[0].classList.add("open", "show");
-    } else if (cardsList.length === 2) {
+    }
+    //hiding the cards if user clicked two of them
+    else if (cardsList.length === 2) {
         cardsList[0].classList.remove("open", "show");
         cardsList[1].classList.remove("open", "show");
         cardsList.splice(0, cardsList.length);
@@ -125,7 +138,7 @@ function hideCards(e) {
         return;
     }
 }
-
+//counting the time and updating it on the game screen
 function add() {
     seconds++;
     if (seconds >= 60) {
@@ -141,25 +154,32 @@ function add() {
 
     startTimer();
 }
-
+//starting the timer function
 function startTimer() {
     g = setTimeout(add, 1000);
 }
 startTimer();
-
+//counting the moves and updating it on the screen
 function countMoves() {
     moveCounter++;
     moves.innerHTML = moveCounter;
 }
-
+//counting the stars depending on the number of moves
 function countStars() {
     totalTime.innerHTML = timer.textContent;
+    // 1 star if there's more than 25 moves
     if (moveCounter >= 25) {
         stars.innerHTML = 1;
+        star2.style.display = "none";
         star.innerHTML = "Star!";
-    } else if (moveCounter >= 20) {
+    }
+    // 2 stars if it's between 20 and 25 moves
+    else if (moveCounter >= 20) {
         stars.innerHTML = 2;
-    } else {
+        star1.style.display = "none";
+    }
+    // 3 stars if there's less than 20 moves
+    else {
         stars.innerHTML = 3;
     }
 
@@ -169,7 +189,7 @@ for (const y of cardsArray) {
     y.addEventListener("click", start);
     y.addEventListener("click", finalScore);
 }
-
+//creating the modal screen if there's 8 matched cards
 function finalScore() {
     if (matched === 8) {
         final.style.display = "block";
@@ -179,11 +199,12 @@ function finalScore() {
     }
     countStars();
 }
-
+//reloading the page and starting the game again
 function reloadPage() {
     window.location.reload();
 }
 
 repeat.addEventListener('click', reloadPage);
+again.addEventListener('click', reloadPage);
 
 setup();

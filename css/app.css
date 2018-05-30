@@ -114,7 +114,7 @@ h1 {
 }
 
 .final {
-    margin-top: 120px;
+    margin-top: 80px;
     display: none;
     border-radius: 75%;
     background: black;
@@ -124,7 +124,7 @@ h1 {
 .rainbow {
     font-family: cursive;
     font-size: 60px;
-    padding: 50px;
+    padding: 75px;
     animation: rainbow 1s infinite;
 }
 
@@ -157,3 +157,10 @@ h1 {
         opacity: 100;
     }
 }
+
+.again:hover {
+    cursor:pointer;
+    border: 6px solid lightgray;
+    padding-left:3px;
+}
+
